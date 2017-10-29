@@ -110,9 +110,9 @@ public class EditorActivity extends AppCompatActivity implements
         }
 
         // Find all relevant views that we will need to read user input from
-        mNameEditText = (EditText) findViewById(R.id.edit_item_name);
+        mNameEditText = findViewById(R.id.edit_item_name);
 
-        mPriceEditText = (EditText) findViewById(R.id.edit_price);
+        mPriceEditText = findViewById(R.id.edit_price);
         mImageButton = findViewById(R.id.camera_image);
         mMinusButton = findViewById(R.id.button_minus);
         mPlusButton =  findViewById(R.id.button_plus);

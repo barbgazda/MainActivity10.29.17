@@ -16,6 +16,7 @@ import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import com.example.android.mainactivity.Data.InvContract;
 
@@ -25,7 +26,7 @@ public class InvCursorAdapter extends CursorAdapter {
         super(context, c, 0 /* flags */);
     }
 
-    int newQuantity;
+
 
 
     @Override
@@ -71,26 +72,31 @@ public class InvCursorAdapter extends CursorAdapter {
         priceTextView.setText(itemPrice);
         //itemEmailView.setText(itemEmail);
         itemImageView.setImageURI(Uri.parse(itemImage));
-        final int itemId = cursor.getInt(idColumnIndex);
+        final int productId = cursor.getInt(idColumnIndex);
 
-        final int currentQuantity = itemQuantity;
+
 
         // Set a clickListener on sale button
         saleButton.setOnClickListener(new View.OnClickListener() {
             @Override
-
             public void onClick(View view) {
-                newQuantity = currentQuantity;
 
-                if (newQuantity > 0) {
-                    newQuantity = newQuantity--;
-                }
-
-                ContentValues values = new ContentValues();
-                Uri uri = ContentUris.withAppendedId(InvContract.ItemEntry.CONTENT_URI, itemId);
-                values.put(InvContract.ItemEntry.COLUMN_INVENTORY_QUANTITY, newQuantity);
-                mContext.getContentResolver().update(uri, values, null, null);
+                Uri currentItemUri = ContentUris.withAppendedId(InvContract.ItemEntry.CONTENT_URI, productId);
+                itemSold(view, itemQuantity, currentItemUri);
             }
         });
+    }
+
+    private void itemSold(View view, int item_quantity, Uri uri) {
+
+        if (item_quantity > 0) {
+            item_quantity--;
+
+            ContentValues values = new ContentValues();
+            values.put(InvContract.ItemEntry.COLUMN_INVENTORY_QUANTITY, item_quantity);
+            mContext.getContentResolver().update(uri, values, null, null);
+        } else {
+            Toast.makeText(view.getContext(), "You are out of stock on this item", Toast.LENGTH_SHORT).show();
+        }
     }
 }

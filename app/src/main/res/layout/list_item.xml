@@ -1,68 +1,103 @@
-<?xml version="1.0" encoding="utf-8"?><!--
-    This program is influenced and patterned after the Udacity Inventory App
---><!-- Layout for a single list item in the list of pets -->
-<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:tool="http://schemas.android.com/tools"
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    xmlns:tool="http://schemas.android.com/tools"
     android:orientation="vertical">
 
 
-    <ImageView
-        android:id="@+id/list_item_picture"
-        android:layout_width="200dp"
+    <LinearLayout
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:paddingTop="10dp"
-        tool:src="@drawable/shopping_image" />
+        android:orientation="horizontal">
 
+        <ImageView
+            android:id="@+id/list_item_picture"
+            android:layout_width="0dp"
+            android:layout_height="100dp"
+            android:layout_weight="2"
+            android:scaleType="fitCenter"
+            android:src="@drawable/shopping_image" />
 
-    <TextView
-        android:id="@+id/name"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_toEndOf="@id/list_item_picture"
-        android:layout_toRightOf="@id/list_item_picture"
-        android:paddingEnd="10dp"
-        android:paddingLeft="10dp"
-        android:paddingStart="10dp"
-        android:paddingTop="30dp"
-        android:textAppearance="?android:textAppearanceLarge"
-        tool:text="item" />
+        <LinearLayout
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:layout_weight="5"
+            android:layout_marginLeft="8dp"
+            android:orientation="vertical">
 
-    <TextView
-        android:id="@+id/price"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_below="@id/name"
-        android:layout_toEndOf="@id/list_item_picture"
-        android:layout_toRightOf="@id/list_item_picture"
-        android:paddingEnd="10dp"
-        android:paddingLeft="10dp"
-        android:paddingStart="10dp"
-        android:textAppearance="?android:textAppearanceLarge"
-        tool:text="price" />
+            <TextView
+                android:id="@+id/name"
+                android:layout_width="match_parent"
+                android:layout_height="0dp"
+                android:layout_weight="2"
+                android:textStyle="bold"
+                android:textAppearance="?android:textAppearanceMedium"
+                tool:text="item"/>
 
-    <TextView
-        android:id="@+id/quantity"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_below="@id/price"
-        android:layout_toEndOf="@id/list_item_picture"
-        android:layout_toRightOf="@id/list_item_picture"
-        android:paddingEnd="10dp"
-        android:paddingLeft="10dp"
-        android:paddingStart="10dp"
-        android:textAppearance="?android:textAppearanceLarge"
-        tool:text="quantity" />
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="0dp"
+                android:layout_weight="1"
+                android:orientation="horizontal">
 
-    <Button
-        android:id="@+id/sale_button"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_below="@id/quantity"
-        android:layout_toRightOf="@id/list_item_picture"
-        android:text="@string/list_sale_button"
-        android:theme="@style/AppTheme.Button" />
+                <TextView
+                    android:id="@+id/text_price"
+                    android:layout_width="0dp"
+                    android:layout_height="match_parent"
+                    android:layout_weight="1"
+                    android:textStyle="bold"
+                    android:textColor="@color/black"
+                    android:text="@string/list_price_text"/>
 
+                <TextView
+                    android:id="@+id/price"
+                    android:layout_width="0dp"
+                    android:layout_height="match_parent"
+                    android:layout_weight="1"
+                    android:textStyle="bold"
+                    android:textColor="@color/black"
+                    android:text="00.00"/>
+            </LinearLayout>
 
-</RelativeLayout>
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="0dp"
+                android:layout_weight="1"
+                android:orientation="horizontal">
+
+                <TextView
+                    android:id="@+id/text_quantity"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:text="Stock Quantity:"
+                    android:textColor="@color/black"/>
+
+                <TextView
+                    android:id="@+id/quantity"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:text="1"
+                    android:textColor="@color/black"/>
+            </LinearLayout>
+
+        </LinearLayout>
+
+        <Button
+            android:id="@+id/sale_button"
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:layout_weight="1"
+            android:layout_margin="2dp"
+            android:text="@string/list_sale_button"
+            android:theme="@style/AppTheme.Button"
+            android:textSize="8sp"
+            android:focusable="false"
+            android:textColor="@color/black"
+            android:focusableInTouchMode="false"/>
+
+    </LinearLayout>
+
+</LinearLayout>

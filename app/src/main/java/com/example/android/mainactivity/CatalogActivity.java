@@ -78,10 +78,10 @@ public class CatalogActivity extends AppCompatActivity implements
                 // {@link PetEntry#CONTENT_URI}.
                 // For example, the URI would be "content://com.example.android.pets/pets/2"
                 // if the pet with ID 2 was clicked on.
-                Uri currentPetUri = ContentUris.withAppendedId(InvContract.ItemEntry.CONTENT_URI, id);
+                Uri currentUri = ContentUris.withAppendedId(InvContract.ItemEntry.CONTENT_URI, id);
 
                 // Set the URI on the data field of the intent
-                intent.setData(currentPetUri);
+                intent.setData(currentUri);
 
                 // Launch the {@link EditorActivity} to display the data for the current pet.
                 startActivity(intent);

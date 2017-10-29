@@ -124,7 +124,7 @@ public class InventoryProvider extends ContentProvider {
             case INVENTORY:
                 return update(uri, contentValues, selection, selectionArgs);
             case INVENTORY_ID:
-                selection = InvContract.ItemEntry._ID ;
+                selection = InvContract.ItemEntry._ID + "=?";
                 selectionArgs = new String[]{String.valueOf(ContentUris.parseId(uri))};
                 return updateItem(uri, contentValues, selection, selectionArgs);
             default:

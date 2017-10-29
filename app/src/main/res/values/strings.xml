@@ -96,4 +96,6 @@
     <string name="editor_product_insert_failed">Product insert failed</string>
     <string name="editor_product_insert_success">Product insert complete</string>
     <string name="item_inventory">Item Inventory</string>
+    <string name="list_price_text">Price</string>
+    <string name="list_quantity_text">quantity</string>
 </resources>
