@@ -1,0 +1,99 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<resources>
+    <!-- Name for the application [CHAR LIMIT=12] -->
+    <string name="app_name">Inventory</string>
+
+    <!-- Label for overflow menu option that inserts fake pet data into the app [CHAR LIMIT=20] -->
+    <string name="action_insert_dummy_data">Insert Dummy Data</string>
+
+    <!-- Label for overflow menu option that deletes all pet data in the app [CHAR LIMIT=20] -->
+    <string name="action_delete_all_entries">Delete All Entries</string>
+
+    <!-- Title text for the empty view, which describes the empty dog house image [CHAR LIMIT=50] -->
+    <string name="empty_view_title_text">Shop till you drop....</string>
+
+    <!-- Subtitle text for the empty view that prompts the user to add a pet [CHAR LIMIT=50] -->
+    <string name="empty_view_subtitle_text">Get started by adding an item</string>
+
+
+
+    <!-- Editor Activity] -->
+    <string name="editor_activity_title_new_pet">Add an Item</string>
+
+    <!-- Title for the activity to edit an existing pet [CHAR LIMIT=20] -->
+    <string name="editor_activity_title_edit_pet">Edit Item</string>
+    <string name="editor_insert_pet_successful">Item saved</string>
+    <string name="editor_suceessful">Edit Successful</string>
+    <string name="editor_failed">Edit Failed</string>
+    <string name="editor_insert_pet_failed">Error with saving item</string>
+    <string name="invalid_stock">No quantity selected</string>
+    <string name="product_added">Product added</string>
+    <string name="editor_update_pet_successful">Item updated</string>
+    <string name="editor_update_pet_failed">Error with updating item</string>
+    <!-- Label for editor menu option to save pet and leave editor [CHAR LIMIT=20] -->
+    <string name="action_save">Save</string>
+    <!-- Label for editor overflow menu option that deletes the current pet [CHAR LIMIT=20] -->
+    <string name="action_delete">Delete</string>
+    <!-- Dialog message when user is leaving editor but hasn't saved changes [CHAR LIMIT=NONE] -->
+    <string name="unsaved_changes_dialog_msg">Discard your changes and quit editing?</string>
+    <!-- Dialog button text for the option to discard a user's changes [CHAR LIMIT=20] -->
+    <string name="discard">Discard</string>
+    <!-- Dialog button text for the option to keep editing the current pet [CHAR LIMIT=20] -->
+    <string name="keep_editing">Keep Editing</string>
+    <!-- Toast message in editor when current pet was successfully deleted [CHAR LIMIT=NONE] -->
+    <string name="editor_delete_pet_successful">Item deleted</string>
+    <!-- Toast message in editor when current pet has failed to be deleted [CHAR LIMIT=NONE] -->
+    <string name="editor_delete_pet_failed">Error with deleting item</string>
+    <!-- Dialog message to ask the user to confirm deleting the current pet [CHAR LIMIT=NONE] -->
+    <string name="delete_dialog_msg">Delete this item?</string>
+    <!-- Dialog button text for the option to confirm deleting the current pet [CHAR LIMIT=20] -->
+    <string name="delete">Delete</string>
+    <!-- Dialog button text for the option to cancel deletion of the current pet [CHAR LIMIT=20] -->
+    <string name="cancel">Cancel</string>
+    <!-- Label for overview category of attributes in the editor [CHAR LIMIT=30] -->
+    <string name="category_overview">Overview</string>
+
+    <!-- Label for quantity infor in the editor -->
+    <string name="category_quantitiy">Quantity</string>
+    <string name="category_delete">Delete</string>
+    <string name="category_cancel">Cancel</string>
+    <string name="category_delete_message">Continue with delete?</string>
+    <!-- Label for price info in the editor -->
+    <string name="category_price">Price</string>
+    <!-- Label for price info in the editor -->
+    <string name="category_item">Item</string>
+    <!-- Label for price info in the editor -->
+    <string name="quantity_minus">- qty 1</string>
+    <!-- Label for price info in the editor -->
+    <string name="quantity_plus">+ qty 1</string>
+    <!-- Label for price info in the ditor -->
+    <string name="unknown_inv">Item Unknown</string>
+    <!-- Label for price info in the editor -->
+    <string name="editor_activity_title_new_inventory">Add new Inventory</string>
+    <!-- Label for price info in the editor -->
+    <string name="editor_activity_title_edit_inventory">Edit Inventory</string>
+    <!-- Label for price info in the editor -->
+    <string name="edit_item_name">Edit Item Name</string>
+    <!-- Label for price info in the editor -->
+    <string name="edit_quantity">Edit Item Quantity</string>
+    <!-- Label for price info in the editor -->
+    <string name="edit_price">Edit Item Price</string>
+   <!-- Label for price info in the editor -->
+    <string name="edit">Edit Screen</string>
+    <!-- Label for order summary in the editor -->
+    <string name="editor_nameNeeded">Please enter Item Name</string>
+    <string name="editor_supplier_email">Supplier Email</string>
+    <string name="submit_order">Place Order</string>
+    <string name="editor_emailNeeded">Please enter a valid email address</string>
+    <string name="editor_quantityNeeded">Please enter a valid quantity</string>
+    <string name="editor_priceNeeded">Please enter a valid price/cost </string>
+    <string name="editor_pictureNeeded">Please include an item picture</string>
+    <string name ="editor_no_saved_image">No saved image</string>
+    <string name="list_sale_button">Sale</string>
+    <string name="activity_ok">picture savedy</string>
+    <string name="orer_new_stock">Order new Stock</string>
+    <string name="editor_product_insert_failed">Product insert failed</string>
+    <string name="editor_product_insert_success">Product insert complete</string>
+    <string name="item_inventory">Item Inventory</string>
+</resources>

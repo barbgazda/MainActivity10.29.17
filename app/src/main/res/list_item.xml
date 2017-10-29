@@ -1,0 +1,68 @@
+<?xml version="1.0" encoding="utf-8"?><!--
+    This program is influenced and patterned after the Udacity Inventory App
+--><!-- Layout for a single list item in the list of pets -->
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tool="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical">
+
+
+    <ImageView
+        android:id="@+id/list_item_picture"
+        android:layout_width="200dp"
+        android:layout_height="wrap_content"
+        android:paddingTop="10dp"
+        tool:src="@drawable/shopping_image" />
+
+
+    <TextView
+        android:id="@+id/name"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_toEndOf="@id/list_item_picture"
+        android:layout_toRightOf="@id/list_item_picture"
+        android:paddingEnd="10dp"
+        android:paddingLeft="10dp"
+        android:paddingStart="10dp"
+        android:paddingTop="30dp"
+        android:textAppearance="?android:textAppearanceLarge"
+        tool:text="item" />
+
+    <TextView
+        android:id="@+id/price"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/name"
+        android:layout_toEndOf="@id/list_item_picture"
+        android:layout_toRightOf="@id/list_item_picture"
+        android:paddingEnd="10dp"
+        android:paddingLeft="10dp"
+        android:paddingStart="10dp"
+        android:textAppearance="?android:textAppearanceLarge"
+        tool:text="price" />
+
+    <TextView
+        android:id="@+id/quantity"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/price"
+        android:layout_toEndOf="@id/list_item_picture"
+        android:layout_toRightOf="@id/list_item_picture"
+        android:paddingEnd="10dp"
+        android:paddingLeft="10dp"
+        android:paddingStart="10dp"
+        android:textAppearance="?android:textAppearanceLarge"
+        tool:text="quantity" />
+
+    <Button
+        android:id="@+id/sale_button"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/quantity"
+        android:layout_toRightOf="@id/list_item_picture"
+        android:text="@string/list_sale_button"
+        android:theme="@style/AppTheme.Button" />
+
+
+</RelativeLayout>

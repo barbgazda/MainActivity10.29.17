@@ -1,0 +1,129 @@
+<?xml version="1.0" encoding="utf-8"?><!--
+    This program is influenced and patterned after the Udacity Inventory App
+-->
+
+<!-- Layout for the editor -->
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    android:padding="@dimen/activity_margin"
+    tools:context=".EditorActivity">
+
+    <!-- Overview category -->
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal">
+
+        <EditText
+        android:id="@+id/edit_item_name"
+        style="@style/EditorFieldStyle"
+        android:hint="@string/category_item"
+        android:inputType="textCapWords"
+        />
+    </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal">
+
+            <EditText
+                android:id="@+id/edit_price"
+                style="@style/EditorFieldStyle"
+                android:hint="@string/category_price"
+                android:inputType="numberDecimal" />
+        </LinearLayout>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal">
+
+        <EditText
+            android:id="@+id/edit_email"
+            style="@style/EditorFieldStyle"
+            android:inputType="textEmailAddress"
+            android:hint="@string/editor_supplier_email"
+            />
+    </LinearLayout>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="180dp"
+        android:orientation="horizontal">
+
+        <ImageView
+            android:id="@+id/editor_item_picture"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent" />
+
+    </LinearLayout>
+
+   <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="270dp"
+        android:paddingTop = "10dp"
+        android:orientation="vertical"
+        android:paddingLeft="4dp">
+
+        <!-- Weight field -->
+        <Button
+            android:id="@+id/button_minus"
+            android:layout_width="100dp"
+            android:layout_height="55dp"
+            android:text="@string/quantity_minus"
+            android:textStyle="bold" />
+
+        <Button
+            android:id="@+id/button_plus"
+            android:layout_width="100dp"
+            android:layout_height="55dp"
+            android:layout_toRightOf="@id/button_minus"
+            android:onClick="add"
+            android:text="@string/quantity_plus"
+            android:textStyle="bold" />
+
+
+        <Button
+            android:id="@+id/button_order"
+            android:layout_width="100dp"
+            android:layout_height="55dp"
+            android:layout_alignParentTop="true"
+            android:layout_marginLeft="27dp"
+            android:layout_marginStart="27dp"
+            android:layout_toEndOf="@+id/button_plus"
+            android:layout_toRightOf="@+id/button_plus"
+            android:text="@string/submit_order"
+            android:theme="@style/AppTheme.Button" />
+
+       <ImageButton
+            android:id="@+id/camera_image"
+           android:layout_width="100dp"
+           android:layout_height="55dp"
+           android:paddingTop="9dp"
+            android:paddingLeft="19dp"
+            android:src="@drawable/ic_add_a_photo"
+           android:layout_alignTop="@+id/edit_view_quantity"
+           android:layout_alignStart="@+id/button_order"
+           android:layout_alignLeft="@+id/button_order"/>
+
+       <EditText
+           android:id="@+id/edit_view_quantity"
+           android:layout_width="wrap_content"
+           android:layout_height="wrap_content"
+           android:layout_marginTop="24dp"
+           android:hint="Enter Quantity"
+           android:inputType = "number"
+           android:textColor="@color/black"
+           android:textSize="24sp"
+           android:layout_below="@+id/button_minus"
+           android:layout_toStartOf="@+id/button_order"
+           android:layout_marginEnd="20dp" />
+
+
+
+   </RelativeLayout>
+</LinearLayout>
