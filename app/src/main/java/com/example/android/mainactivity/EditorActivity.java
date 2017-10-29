@@ -31,8 +31,6 @@ import android.widget.EditText;
 import android.widget.ImageButton;
 import android.widget.ImageView;
 import android.widget.Toast;
-
-
 import com.example.android.mainactivity.Data.InvContract;
 
 import java.io.FileNotFoundException;
@@ -49,9 +47,7 @@ import static java.lang.Double.parseDouble;
 public class EditorActivity extends AppCompatActivity implements
         LoaderManager.LoaderCallbacks<Cursor> {
 
-
     public static final String LOG_TAG = EditorActivity.class.getSimpleName();
-
     private static final int EXISTING_INVENTORY_LOADER = 0;
     static final int PICK_IMAGE_REQUEST = 1;
 
@@ -117,13 +113,13 @@ public class EditorActivity extends AppCompatActivity implements
         mNameEditText = (EditText) findViewById(R.id.edit_item_name);
 
         mPriceEditText = (EditText) findViewById(R.id.edit_price);
-        mImageButton = (ImageButton) findViewById(R.id.camera_image);
-        mMinusButton = (Button) findViewById(R.id.button_minus);
-        mPlusButton = (Button) findViewById(R.id.button_plus);
-        mPlaceOrder = (Button) findViewById(R.id.button_order);
-        mImageView = (ImageView)findViewById(R.id.editor_item_picture);
-        mstartQuantity = (EditText)findViewById(R.id.edit_view_quantity);
-        mEmailAddress = (EditText)findViewById(R.id.edit_email);
+        mImageButton = findViewById(R.id.camera_image);
+        mMinusButton = findViewById(R.id.button_minus);
+        mPlusButton =  findViewById(R.id.button_plus);
+        mPlaceOrder = findViewById(R.id.button_order);
+        mImageView = findViewById(R.id.editor_item_picture);
+        mstartQuantity = findViewById(R.id.edit_view_quantity);
+        mEmailAddress = findViewById(R.id.edit_email);
 
         // Setup OnTouchListeners on all the input fields, so we can determine if the user
         // has touched or modified them. This will let us know if there are unsaved changes
@@ -348,7 +344,9 @@ public class EditorActivity extends AppCompatActivity implements
         String nameString = mNameEditText.getText().toString().trim();
         String priceString = mPriceEditText.getText().toString().trim();
         String quantityString = mstartQuantity.getText().toString().trim();
+        String emailString = mEmailAddress.getText().toString().trim();
 
+        String imageUri = mItemUri.toString();
         // Check if this is supposed to be a new inventory
         // and check if all the fields in the editor are blank
         if (mCurrentInventoryUri == null &&
@@ -385,11 +383,13 @@ public class EditorActivity extends AppCompatActivity implements
 
         // Create a ContentValues object where column names are the keys,
         // and inventory attributes from the editor are the values.
+
         ContentValues values = new ContentValues();
         values.put(InvContract.ItemEntry.COLUMN_INVENTORY_NAME, nameString);
         values.put(InvContract.ItemEntry.COLUMN_INVENTORY_PRICE, priceString);
-        values.put(InvContract.ItemEntry.COLUMN_INVENTORY_PRICE, quantityString);
-
+        values.put(InvContract.ItemEntry.COLUMN_INVENTORY_QUANTITY, quantityString);
+         values.put(InvContract.ItemEntry.COLUMN_SUPPLIER_EMAIL,emailString);
+         values.put(InvContract.ItemEntry.COLUMN_ITEM_IMAGE, imageUri);
 
         // Determine if this is a new or existing inventory by checking if mCurrentinventoryUri is null or not
         if (mCurrentInventoryUri == null) {
@@ -527,7 +527,10 @@ public class EditorActivity extends AppCompatActivity implements
                 InvContract.ItemEntry._ID,
                 InvContract.ItemEntry.COLUMN_INVENTORY_NAME,
                 InvContract.ItemEntry.COLUMN_INVENTORY_QUANTITY,
-                InvContract.ItemEntry.COLUMN_INVENTORY_PRICE,};
+                InvContract.ItemEntry.COLUMN_INVENTORY_PRICE,
+                InvContract.ItemEntry.COLUMN_SUPPLIER_EMAIL};
+
+
                 // This loader will execute the ContentProvider's query method on a background thread
         return new CursorLoader(this,   // Parent activity context
                 mCurrentInventoryUri,         // Query the content URI for the current inventory
@@ -550,18 +553,22 @@ public class EditorActivity extends AppCompatActivity implements
             int quantityColumnIndex = cursor.getColumnIndex(InvContract.ItemEntry.COLUMN_INVENTORY_QUANTITY);
             int priceColumnIndex = cursor.getColumnIndex(InvContract.ItemEntry.COLUMN_INVENTORY_PRICE);
             int imageColumnIndex = cursor.getColumnIndex(InvContract.ItemEntry.COLUMN_ITEM_IMAGE);
+            int emailColumnIndex = cursor.getColumnIndex(InvContract.ItemEntry.COLUMN_SUPPLIER_EMAIL);
+
             // Extract out the value from the Cursor for the given column index
             String name = cursor.getString(nameColumnIndex);
             int quantity = cursor.getInt(quantityColumnIndex);
             int price = cursor.getInt(priceColumnIndex);
             String image = cursor.getString(imageColumnIndex);
+            String email = cursor.getString(emailColumnIndex);
             // Update the views on the screen with the values from the database
             mNameEditText.setText(name);
             //mQuantityEditText.setText(Integer.toString(quantity));
             mPriceEditText.setText(Integer.toString(price));
             mstartQuantity.setText(Integer.toString(quantity));
             mItemUri = Uri.parse(image);
-            mImageView.setImageURI(mItemUri);
+            mEmailAddress.setText(email);
+            mImageView.setImageBitmap(getBitmapFromUri(Uri.parse(image)));
         }
     }
     @Override
@@ -570,6 +577,9 @@ public class EditorActivity extends AppCompatActivity implements
         mNameEditText.setText("");
         //mQuantityEditText.setText("");
         mPriceEditText.setText("");
+        mEmailAddress.setText("");
+        mstartQuantity.setText(String.valueOf(String.valueOf(0)));
+
     }
     /**
      * Show a dialog that warns the user there are unsaved changes that will be lost

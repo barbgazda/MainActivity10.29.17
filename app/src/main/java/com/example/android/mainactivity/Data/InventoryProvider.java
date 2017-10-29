@@ -92,14 +92,14 @@ public class InventoryProvider extends ContentProvider {
             throw new IllegalArgumentException("Inventory requires valid number");
         }
 
-        Integer price = values.getAsInteger(InvContract.ItemEntry.COLUMN_INVENTORY_PRICE);
-        if (price != null || price < 0) {
+        Double price = values.getAsDouble(InvContract.ItemEntry.COLUMN_INVENTORY_PRICE);
+        if (price == null || price < 0) {
             throw new IllegalArgumentException("Inventory requires valid price");
         }
         // Check that the supplier email address is not null
         String email = values.getAsString(InvContract.ItemEntry.COLUMN_SUPPLIER_EMAIL);
         if (email == null) {
-            throw new IllegalArgumentException("Product requires a valid supplier name");
+            throw new IllegalArgumentException("Product requires a valid email");
         }
 
 
@@ -147,20 +147,10 @@ public class InventoryProvider extends ContentProvider {
                 throw new IllegalArgumentException("Insertion is not supported for " + uri);
             }
         }
-        if (values.containsKey(InvContract.ItemEntry.COLUMN_INVENTORY_QUANTITY)) {
-            // Check that the weight is greater than or equal to 0 kg
-            Integer quantity = values.getAsInteger(InvContract.ItemEntry.COLUMN_INVENTORY_QUANTITY);
-            if (quantity != null && quantity < 0) {
-                throw new IllegalArgumentException("Inventory requires valid quantity");
-            }
+        // If there are no values to update, then don't try to update the database
+        if (values.size() == 0) {
+            return 0;
         }
-        if (values.containsKey(InvContract.ItemEntry.COLUMN_INVENTORY_PRICE)) {
-            Integer price = values.getAsInteger(InvContract.ItemEntry.COLUMN_INVENTORY_PRICE);
-            if (price != null && price < 0) {
-                throw new IllegalArgumentException("Inventory requires valid price");
-            }
-        }
-
 
                 // Otherwise, get writeable database to update the data
                 SQLiteDatabase database = mDbHelper.getWritableDatabase();

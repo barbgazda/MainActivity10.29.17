@@ -25,8 +25,8 @@ public class InvCursorAdapter extends CursorAdapter {
         super(context, c, 0 /* flags */);
     }
 
-    int newcurrentQuantity;
-    String itemQuantity;
+    int newQuantity;
+
 
     @Override
     public View newView(Context context, Cursor cursor, ViewGroup parent) {
@@ -41,7 +41,7 @@ public class InvCursorAdapter extends CursorAdapter {
         TextView quantityTextView = view.findViewById(R.id.quantity);
         TextView priceTextView = view.findViewById(R.id.price);
         ImageView itemImageView = view.findViewById(R.id.list_item_picture);
-        TextView itemEmailView = view.findViewById(R.id.edit_email);
+        //TextView itemEmailView = view.findViewById(R.id.edit_email);
         Button saleButton = view.findViewById(R.id.sale_button);
 
         // Find the columns of we're interested in
@@ -50,14 +50,14 @@ public class InvCursorAdapter extends CursorAdapter {
         int quantityColumnIndex = cursor.getColumnIndex(InvContract.ItemEntry.COLUMN_INVENTORY_QUANTITY);
         int priceColumnIndex = cursor.getColumnIndex(InvContract.ItemEntry.COLUMN_INVENTORY_PRICE);
         int imageColumnIndex = cursor.getColumnIndex(InvContract.ItemEntry.COLUMN_ITEM_IMAGE);
-        int emailColumnIndex = cursor.getColumnIndex(InvContract.ItemEntry.COLUMN_SUPPLIER_EMAIL);
+        //int emailColumnIndex = cursor.getColumnIndex(InvContract.ItemEntry.COLUMN_SUPPLIER_EMAIL);
 
         // Read the item attributes
         String itemName = cursor.getString(nameColumnIndex);
         final int itemQuantity = cursor.getInt(quantityColumnIndex);
         String itemPrice = cursor.getString(priceColumnIndex);
         String itemImage = cursor.getString(imageColumnIndex);
-        String itemEmail = cursor.getString(emailColumnIndex);
+        //String itemEmail = cursor.getString(emailColumnIndex);
 
         // If the inventory name is empty string or null, then use some default text
         // that says "Unknown name", so the TextView isn't blank.
@@ -65,30 +65,31 @@ public class InvCursorAdapter extends CursorAdapter {
             itemName = context.getString(R.string.unknown_inv);
         }
 
-        // Update the TextViews with the attributes for the current pet
+        // Update the TextViews with the attributes for the current item
         nameTextView.setText(itemName);
-        quantityTextView.setText(itemQuantity);
+        quantityTextView.setText(Integer.toString(itemQuantity));
         priceTextView.setText(itemPrice);
-        itemEmailView.setText(itemEmail);
+        //itemEmailView.setText(itemEmail);
         itemImageView.setImageURI(Uri.parse(itemImage));
         final int itemId = cursor.getInt(idColumnIndex);
+
+        final int currentQuantity = itemQuantity;
 
         // Set a clickListener on sale button
         saleButton.setOnClickListener(new View.OnClickListener() {
             @Override
+
             public void onClick(View view) {
-                int currentQuantity = itemQuantity;
-                try {
-                    if (currentQuantity > 0) {
-                        newcurrentQuantity = currentQuantity--;
-                    }
-                    ContentValues values = new ContentValues();
-                    Uri uri = ContentUris.withAppendedId(InvContract.ItemEntry.CONTENT_URI, itemId);
-                    values.put(InvContract.ItemEntry.COLUMN_INVENTORY_QUANTITY, newcurrentQuantity);
-                    mContext.getContentResolver().update(uri, values, null, null);
-                } catch (NumberFormatException nfe) {
-                    System.out.println("Could not update " + nfe);
+                newQuantity = currentQuantity;
+
+                if (newQuantity > 0) {
+                    newQuantity = newQuantity--;
                 }
+
+                ContentValues values = new ContentValues();
+                Uri uri = ContentUris.withAppendedId(InvContract.ItemEntry.CONTENT_URI, itemId);
+                values.put(InvContract.ItemEntry.COLUMN_INVENTORY_QUANTITY, newQuantity);
+                mContext.getContentResolver().update(uri, values, null, null);
             }
         });
     }

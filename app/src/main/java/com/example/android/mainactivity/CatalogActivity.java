@@ -27,6 +27,8 @@ import android.widget.Toast;
 
 import com.example.android.mainactivity.Data.InvContract;
 
+import static com.example.android.mainactivity.R.id.image;
+
 
 /**
  * Displays list of inventorys that were entered and stored in the app.
@@ -93,14 +95,16 @@ public class CatalogActivity extends AppCompatActivity implements
     /**
      * Helper method to insert hardcoded pet data into the database. For debugging purposes only.
      */
-    private void insertItem(String name, int quantity, double price, String email) {
+    private void insertInventory(String name, int quantity, double price, String email) {
         // Create a ContentValues object where column names are the keys,
-        // and Toto's pet attributes are the values.
+
         ContentValues values = new ContentValues();
         values.put(InvContract.ItemEntry.COLUMN_INVENTORY_NAME, name);
         values.put(InvContract.ItemEntry.COLUMN_INVENTORY_QUANTITY,quantity);
         values.put(InvContract.ItemEntry.COLUMN_INVENTORY_PRICE, price);
         values.put(InvContract.ItemEntry.COLUMN_SUPPLIER_EMAIL, email);
+        values.put(InvContract.ItemEntry.COLUMN_ITEM_IMAGE, image);
+
         // Insert a new row for Toto into the provider using the ContentResolver.
         // Use the {@link PetEntry#CONTENT_URI} to indicate that we want to insert
         // into the pets database table.
@@ -173,7 +177,8 @@ public class CatalogActivity extends AppCompatActivity implements
                 InvContract.ItemEntry.COLUMN_INVENTORY_QUANTITY,
                 InvContract.ItemEntry.COLUMN_INVENTORY_NAME,
                 InvContract.ItemEntry.COLUMN_INVENTORY_PRICE,
-                InvContract.ItemEntry.COLUMN_SUPPLIER_EMAIL};
+                InvContract.ItemEntry.COLUMN_SUPPLIER_EMAIL,
+                InvContract.ItemEntry.COLUMN_ITEM_IMAGE};
 
         // This loader will execute the ContentProvider's query method on a background thread
         return new CursorLoader(this,   // Parent activity context
